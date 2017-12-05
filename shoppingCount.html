@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title></title>
+	<script>
+        function cout(aLi) {
+            var oInput = aLi.getElementsByTagName('input');
+            var oStrong = aLi.getElementsByTagName('strong')[0];
+            var oEm = aLi.getElementsByTagName('em')[0];
+            var oSpan = aLi.getElementsByTagName('span')[0];
+            var n1 = Number(oStrong.innerHTML);
+            var n2 = parseFloat(oEm.innerHTML);
+            var n3 = 0;
+            oInput[0].onclick = function () {
+                if(n1<=0) {
+                     n1 = 0;
+                }
+                else {
+                     n1--;
+                    oStrong.innerHTML = n1;
+                    oSpan.innerHTML = n1*n2;
+                }
+            }
+            oInput[1].onclick = function () {
+                 n1++;
+                oStrong.innerHTML = n1;
+                n3 = n1*n2;
+                 oSpan.innerHTML = n3;
+            }
+        } 
+         
+        window.onload = function() {
+         	var oUl = document.getElementById('list');
+         	var oLi = oUl.getElementsByTagName('li');
+            var count = document.getElementById('count');
+            var all = 0;//total count
+         	for (var i = 0; i < 4; i++) {
+         		cout(oLi[i]);
+            };
+            
+            count.onclick = function() {
+                for (var i = 0; i < 4; i++) {
+                    all += parseFloat(oLi[i].getElementsByTagName('span')[0].innerHTML);
+                };
+                alert("总价为"+all+"元")
+            }
+            
+
+        } 
+	</script>
+</head>
+<body>
+    <ul id="list">
+    	<li>
+    		<input type="button" value="-">
+    		<strong>0</strong>
+    		<input type="button" value="+">
+    		商品单价是：<em>12.5元</em>
+    		小计:<span>0元</span>
+    	</li>
+    	<li>
+    		<input type="button" value="-">
+    		<strong>0</strong>
+    		<input type="button" value="+">
+    		商品单价是：<em>13元</em>
+    		小计:<span>0元</span>
+    	</li>
+    	<li>
+    		<input type="button" value="-">
+    		<strong>0</strong>
+    		<input type="button" value="+">
+    		商品单价是：<em>15元</em>
+    		小计:<span>0元</span>
+    	</li>
+    	<li>
+    		<input type="button" value="-">
+    		<strong>0</strong>
+    		<input type="button" value="+">
+    		商品单价是：<em>10元</em>
+    		小计:<span>0元</span>
+    	</li>
+    </ul>
+    <button id="count">结算</button>
+</body>
+</html>
